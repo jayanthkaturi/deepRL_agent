@@ -55,9 +55,9 @@ The aim of the robot is to go from [0,0] to [10,10] collecting maximum rewards o
 
 This is repeated for every epoch and time step. What we tried to do here is get the optimal Q-function using neural network. The equaiton looks like this
 ```
-                             Q(s,a) = r + (gamma * maxQ(s',a'))
+                             Q(s,a) = r + (gamma * max(Q(s',a')))
 ```
-This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an [Atari Game](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) we need about math.pow(256, 84 * 84 * 4) matrix!. Thus a neural network, which is efficient in learning functions does this without having to store the rewards of all the states and actions. 
+This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. s' is the final state in a replay memory and max funtion is to get the maximum Q value for all possible actions from state s'. 'gamma' is similar to learning rate in neural networks. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an [Atari Game](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) we need about math.pow(256, 84 * 84 * 4) matrix!. Thus a neural network, which is efficient in learning functions does this without having to store the Q values of all the states and actions. 
 
 By running moverobot.py, one can see how the robot is moved through optimal path.
 ```
