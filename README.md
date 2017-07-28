@@ -50,8 +50,11 @@ This is repeated for every epoch and time step. What we tried to do here is get 
 ```
                              Q(s,a) = r + (gamma * maxQ(s',a'))
 ```
-This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an atari game we need about math.pow(256, 84*84*4) matrix!(https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf). Thus a neural network, which is efficient in learning functions does this without having to store the rewards of all the states and actions. 
+This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an [Atari Game](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) we need about math.pow(256, 84*84*4) matrix!. Thus a neural network, which is efficient in learning functions does this without having to store the rewards of all the states and actions. 
 
 By running moverobot.py, one can see how the robot is moved through optimal path.
-          (0,0) -> (0,1) -> (0,2) -> (0,3) -> (0,4) -> (0,5) -> (0,6) -> (0,7) -> (0,8) -> (0,9) -> (0,10) -> (1,9) ->  (1, 10) -> (2,9) -> (2,10) -> (3,9) -> (3,10) .... -> (9,9) -> (9,10) -> (10, 9) -> (10, 10)
+```
+(0,0) -> (0,1) -> (0,2) -> (0,3) ->...-> (0,10) -> (1,9) ->  (1, 10) ->
+(2,9) -> (2,10) -> (3,9) -> (3,10) .... -> (9,9) -> (9,10) -> (10, 9) -> (10, 10)
+```
 Remember the only input to this neural network is state, action and output is reward it'll receive. Using just this much the neural network has to learned how to move through the environment to receive maximum reward. It learned that the concentration of maximum rewards is towards the right hand corner and it also learned that given the restrictions to move only forward, going zigzag will give it more rewards than going in straight line! Amazing isn't it? The output of the code prints the reward matrix first, neural network architecture and each of the steps the learned neural network took in order to reach the output. Each step consists of the input ([position action]), output of neural network and state matrix after the action is performed.
