@@ -23,7 +23,14 @@ For a Reinforcement problem, we need states, actions and rewards. The state here
                              [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]]
                             This state represents robot at [9,9] in the environment.
 ```
-The number of possible actions are 4, i.e, the robot can go forward in any direction and backward only in down direction. Each of these actions are given numbers from 5 to 8. We are allowing the robot only to move forward because it gets stuck in local optima if it allowed to move backwards. This means the robot is going to move back and forth in a loop in the field, in which case it'll get more rewards. But this doesn't bring the robot to the end of the matrix. Hence this restriction. You can experiment with increasing states by including few backward moments and see what happens. The act(state, pos_robot, action, possibility=False) takes the 2D state matix like on the 2D marix above, the position of robot, the action number and an optional possibility variable. If possiblity is set to True, the output is just True or False if the action is possible (it is not possible if the action takes robot out of the 2D matrix). Else, it'll update the state matrix and return the new position of the robot along with the new state. The rewards are also a 2D matrix representing how much the robot will receive if it reaches a cell as shown below. The numbers are less than one because we are using sigmoid activation for output layers and as you'll see later, this reward is directly related to the expected output of the neural network.
+The number of possible actions are 4, i.e, the robot can go forward in any direction and backward only in down direction. Each of these actions are given numbers from 5 to 8. We are allowing the robot only to move forward because it gets stuck in local optima if it allowed to move backwards. This means the robot is going to move back and forth in a loop in the field, in which case it'll get more rewards. But this doesn't bring the robot to the end of the matrix. Hence this restriction. You can experiment with increasing states by including few backward moments and see what happens. The matrix below shows the action number corresponding to the movement of robot from cell 'p'.
+```
+                                              [[1 2 3]
+                                               [4 p 5]
+                                               [6 7 8]]
+                                            Action numbers
+```
+The act(state, pos_robot, action, possibility=False) takes the 2D state matix like on the 2D marix above, the position of robot, the action number and an optional possibility variable. If possiblity is set to True, the output is just True or False if the action is possible (it is not possible if the action takes robot out of the 2D matrix). Else, it'll update the state matrix and return the new position of the robot along with the new state. The rewards are also a 2D matrix representing how much the robot will receive if it reaches a cell as shown below. The numbers are less than one because we are using sigmoid activation for output layers and as you'll see later, this reward is directly related to the expected output of the neural network.
 ```
                     [[ 0.    0.05  0.1   0.15  0.2   0.25  0.3   0.35  0.4   0.45  0.5 ]
                      [ 0.05  0.    0.15  0.2   0.25  0.3   0.35  0.4   0.45  0.5   0.55]
@@ -50,7 +57,7 @@ This is repeated for every epoch and time step. What we tried to do here is get 
 ```
                              Q(s,a) = r + (gamma * maxQ(s',a'))
 ```
-This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an [Atari Game](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) we need about math.pow(256, 84*84*4) matrix!. Thus a neural network, which is efficient in learning functions does this without having to store the rewards of all the states and actions. 
+This Q is a function of states and actions. It's output value is the optimal reward for given state s and action a taken. For our problem, we need a 100x8 matrix if we decided to do this using just reinforcement learning. What the neural nerwok did here is replace this giant function using a neural network. This problem might look small but to do this on an [Atari Game](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) we need about math.pow(256, 84 * 84 * 4) matrix!. Thus a neural network, which is efficient in learning functions does this without having to store the rewards of all the states and actions. 
 
 By running moverobot.py, one can see how the robot is moved through optimal path.
 ```
