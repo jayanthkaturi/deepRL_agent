@@ -1,4 +1,4 @@
-## Deep Reinforment Learning Agent from scratch
+## Deep Reinforcement Learning Agent from scratch
 
 Reinforcement learning with the power of Deep learning is proving to be a very good in driving cars or playing atari games. In this post I'll try to explain how this works using a basic example of moving a robot in 2D matrix space. You'll see how a DeepRL agent learned, all by it self, to manoeuvre in zig-zag pattern so that it'll receive more rewards. I am using a neural network which I implemented from scratch for this. I'll use term “robot” for this DeepRL agent.
 
