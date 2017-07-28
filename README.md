@@ -5,7 +5,7 @@ Reinforcement learning with the power of Deep learning is proving to be a very g
 I won't get into much of neural networks, but I'll explain how I implemented them. There are several courses/tutorials online that explains how these work in very detail. The neural network is stored as a numpy array of layers. Each layer has a numpy array of nodes in that layer. Each node is a dictionary with weights from previous layer, bias, delta on this node (used while backpropagation), output of this node and delta in bias. The class NN takes an array with configuration of the neural network as input. [2,3,4,5] represents 2 input nodes, 2 hidden layers with 3 and 4 nodes each and 5 output nodes. The activation function used is sigmoid as we are trying to predict a single value (we'll get to this). The configuration which I used for this example is [3, 10, 10, 1]. I used root mean square error as loss funciton. The backward function returns this error and forward function returns the output for given input. PrintNN function just prints the network state for understanding. To run the code, do the following. Numpy is the only dependency needed.
 ```bash
 pip install numpy
-python3.5 moveRobot.py
+python moveRobot.py
 ```
 
 For a Reinforcement problem, we need states, actions and rewards. The state here is the position of the robot in a 2D cor-ordinate space. Simultaneously I am maintaining another 2D matrix of environment with the position of robot as 1 and rest of the entries 0. (I am calling this as state and the former one as position of robot in the code).
