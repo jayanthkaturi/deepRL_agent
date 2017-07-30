@@ -45,7 +45,7 @@ The act(state, pos_robot, action, possibility=False) takes the 2D state matix li
                      [ 0.5   0.55  0.6   0.65  0.7   0.75  0.8   0.85  0.9   0.95  0.  ]]
                       Each cell representing the reward it'll receive for reaching it.
 ```
-The aim of the robot is to go from [0,0] to [10,10] collecting maximum rewards on the way. (I know this can be done with a DP but the point is to understand how deep RL works.)  I am also using Replay memory. This means that the previous actions are stored in the form (initial state, initial position , action, final state, final position) so that they can be processed it later. This is used in order to avoid the robot to get stuck in local optimum. The algorithm is as follows :
+The aim of the robot is to go from [0,0] to [10,10] collecting maximum rewards on the way. (This can be done with a DP but the point is to understand how deep RL works.)  I am also using Replay memory. This means that the previous actions are stored in the form (initial state, initial position , action, final state, final position) so that they can be processed it later. This is used in order to avoid the robot to get stuck in local optimum. The algorithm is as follows :
 1. Choose a random action and execute it on the current state (act() function does this after action is choosen randomly).
 2. Store this action in memory. This is the replay memory. The size is fixed to 10. If there it exceeds 10, the entry in the beginning will be removed.
 3. Choose a random entry in the replay memory.
